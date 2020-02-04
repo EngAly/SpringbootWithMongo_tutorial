@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link href="../webjars/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="../webjars/jquery/3.4.1/jquery.js"></script>
+<script src="../webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+
+   <div class="jumbotron text-center">
+      <h3 class="text-primary">Summarization: <span th:text="${summary}"></span></h3>
+   </div>
+  <div class="container">
+   <table class="table table-hover table-bordered ">
+   </table>
+  </div> 
+  
+   <script type="text/javascript">
+   
+   // here we use jquery to get data from restful endpoint /emp/getall 
+   // note you can use $.post or $.ajax
+ 				$(document).ready(function() {
+					 $.get('/emp/getall', function (data) {
+						 // to convert json object to json format
+			              //  var emps =JSON.stringify(data);
+				       	// $("table").text(emps);
+			                $("table").append(
+			                		"<thead><tr><th>id</th>"+
+			                		"<th>name</th>"+
+			                		"<th>designation</th>"+
+			                		"<th>salary</th></tr></thead>"
+			                		);
+			                $.each(data, function (i, item) {
+			                    $("table").append(
+			                        "<tbody><tr><td>" + item.id + "</td>" +
+			                        "<td>" + item.name + "</td>" +
+			                        "<td>" + item.designation + "</td>" +
+			                        "<td>" + item.salary + "</td></tr></tbody>"
+			                    );
+			                });
+			            });
+				});
+			</script>
+         
+         <h6 class="text-right">time for report is: <b><span th:text="${time}"> </span></b></h6>
+         
+</body>
+</html>

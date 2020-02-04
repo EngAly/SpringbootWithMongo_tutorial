@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Epmloyees Control Manager</title>
+<link href="webjars/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+
+   <div class="jumbotron text-center">
+
+      <h3>get all employees</h3>
+      <form action="/emp/getall" method="get">
+         <div class="form-group row">
+            <div class="col-md-5 offset-md-4">
+               <input class="btn btn-primary col-md-4" type="submit" value="getAllEmps">
+            </div>
+         </div>
+      </form>
+
+      <h3>get all employees order by name</h3>
+      <p>note that here we use button only with window.location.href to access restful API</p>
+      <div class="form-group row">
+         <button class="btn btn-primary col-md-3 offset-md-5" onclick="window.location.href='/emp/getEmpsOrderByName';">
+            getAllEmpsOrderByName</button>
+      </div>
+
+      <hr>
+
+      <h3>get all employees data by filed</h3>
+      <form action="/emp/getby" method="get">
+         <div class="form-group row">
+            <div class="col-md-5 offset-md-4">
+               <select onchange="test(this);" class="browser-default custom-select">
+                  <option id="select" disabled="disabled" selected>Search By</option>
+                  <option value="name">name</option>
+                  <option value="salary">salary</option>
+               </select> <input type="text" id="searchByField" class="mt-1 form-control" placeholder="Enter emp name" name="name">
+               <input class="mt-1 btn btn-primary col-md-4" type="submit" value="get emp by name">
+            </div>
+         </div>
+      </form>
+
+      <hr>
+
+      <h3>create new employee</h3>
+      <form action="/emp/create" method="post">
+         <div class="row">
+            <div class="col-md-5 offset-md-4">
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter emp name" name="name"> <input
+                     type="text" class="form-control mt-1" placeholder="Enter emp designation" name="designation">
+                  <input type="text" class="form-control mt-1" placeholder="Enter emp salary" name="salary">
+               </div>
+               <input class="btn btn-primary col-md-4" type="submit" value="create employee"> <input
+                  class="btn btn-danger col-md-4" type="reset" value="reset">
+            </div>
+         </div>
+      </form>
+
+      <hr>
+
+      <h3>update employee data</h3>
+      <form action="/emp/update" method="post">
+         <div class="row">
+            <div class="col-md-5 offset-md-4">
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Enter emp name" name="name"> <input
+                     type="text" class="form-control mt-1" placeholder="Enter emp designation" name="designation">
+                  <input type="text" class="form-control mt-1" placeholder="Enter emp salary" name="salary">
+               </div>
+               <input class="btn btn-primary col-md-4" type="submit" value="create employee"> <input
+                  class="btn btn-danger col-md-4" type="reset" value="reset">
+            </div>
+         </div>
+      </form>
+
+   </div>
+
+   <script>
+				// this function trigger when item in combo box is changed it 
+				// will change input attribute and change input placehoder
+				function test(selected) {
+					var selectedId = document.getElementById("searchByField");
+					selectedId.placeholder = "Enter Emp " + selected.value;
+					selectedId.setAttribute("name", selected.value);
+
+				}
+			</script>
+
+</body>
+</html>
